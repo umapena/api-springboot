@@ -32,7 +32,17 @@ public class ClienteService {
         return clienteRepository.findAll();
     }
 
-    public void alterarEmail(String email, Long id){
+    public void atualizar(Cliente cliente, Long id){
+        Optional<Cliente> c = clienteRepository.findById(id);
+        if(Optional.ofNullable(cliente).isPresent()){
+            c.get().setNome(cliente.getNome());
+            c.get().setCpf(cliente.getCpf());
+            c.get().setEmail(cliente.getEmail());
+            c.get().setTelefone(cliente.getTelefone());
+            clienteRepository.save(c.get());
+        }
+    }
+    public void atualizarEmail(String email, Long id){
         Optional<Cliente> cliente = clienteRepository.findById(id);
         if(Optional.ofNullable(cliente).isPresent()){
             cliente.get().setEmail(email);

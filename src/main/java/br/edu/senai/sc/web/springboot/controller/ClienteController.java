@@ -59,7 +59,7 @@ public class ClienteController {
     @PutMapping("/atualizar/{id}")
     public ResponseEntity<String> udpate(@RequestBody Cliente cliente, @PathVariable("id") Long id){
         try{
-            clienteService.salvarCliente(cliente);
+            clienteService.atualizar(cliente,id);
         }catch (Exception e){
             return new ResponseEntity<>("Erro ao atualizar cliente.", HttpStatus.BAD_REQUEST);
         }
@@ -69,7 +69,7 @@ public class ClienteController {
     @PatchMapping("/atualizarEmail/{id}")
     public ResponseEntity<String> updateEmail(@RequestParam String email, @PathVariable("id") Long id){
         try{
-            clienteService.alterarEmail(email,id);
+            clienteService.atualizarEmail(email,id);
         }catch (Exception e){
             return new ResponseEntity<>("Erro ao atualizar e-mail.", HttpStatus.BAD_REQUEST);
         }
